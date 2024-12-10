@@ -12,7 +12,7 @@ import { AppState } from './app.state';
 export class AppComponent {
 
   appState = inject(AppState);
-  rootApiLoaded = this.appState.rootApi.isLoaded;
+  rootApiLoaded = this.appState.rootApiState.isLoaded;
 
   constructor() {
     
