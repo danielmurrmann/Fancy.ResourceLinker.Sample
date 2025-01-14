@@ -15,7 +15,7 @@ export class FlightSearchComponent {
   hateoasService = inject(HateoasService);
   router = inject(Router);
   flightState = inject(FlightState);
-  showCreate = this.flightState.createFlightState.isAvailable;
+  showCreate = this.flightState.createFlightVmState.isAvailable;
   viewModel = this.flightState.getFlightSearchVmAsPatchable();
   from = this.viewModel['from'];
   to = this.viewModel['to'];

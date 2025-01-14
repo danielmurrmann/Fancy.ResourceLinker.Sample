@@ -10,7 +10,7 @@ export const FlightState = signalStore(
   withHypermediaAction('updateFlightTimes'),
   withHypermediaAction('updateFlightOperator'),
   withHypermediaAction('updateFlightPrice'),
-  withLinkedHypermediaResource('flightCreateVm', initialFlightCreateVm),
+  withLinkedHypermediaResource('createFlightVm', initialFlightCreateVm),
   withHypermediaAction('createFlight'),
   withHooks({
     onInit(store) {
@@ -18,8 +18,8 @@ export const FlightState = signalStore(
         store._connectUpdateFlightTimes(store.flightEditVm.flight.times, 'update');
         store._connectUpdateFlightOperator(store.flightEditVm.flight.operator, 'update');
         store._connectUpdateFlightPrice(store.flightEditVm.flight.price, 'update');
-        store._connectFlightCreateVm(store.flightSearchVm, 'flightCreateVm');
-        store._connectCreateFlight(store.flightCreateVm.template, 'create');
+        store._connectCreateFlightVm(store.flightSearchVm, 'createFlightVm');
+        store._connectCreateFlight(store.createFlightVm.template, 'create');
     }
 })
 );

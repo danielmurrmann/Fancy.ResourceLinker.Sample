@@ -16,7 +16,7 @@ export class FlightCreateComponent {
   location = inject(Location);
   flightState = inject(FlightState);
   
-  viewModel = this.flightState.getFlightCreateVmAsPatchable();
+  viewModel = this.flightState.getCreateFlightVmAsPatchable();
 
   saveEnabled = this.flightState.createFlightState.isAvailable;
 
