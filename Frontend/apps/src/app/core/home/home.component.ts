@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CoreState } from '../core.state';
+import { CurrencyPipe } from '@angular/common';
+import { HomeStore } from './home.store';
 
 @Component({
     selector: 'app-home',
-    imports: [CommonModule],
+    imports: [CurrencyPipe],
     templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  viewModel = inject(CoreState).homeVm;
+  viewModel = inject(HomeStore).homeVm;
 }

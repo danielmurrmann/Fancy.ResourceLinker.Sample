@@ -4,7 +4,7 @@ import { FLIHGT_ROUTES } from './flight/flight.routes';
 import { PASSENGER_ROUTES } from './passenger/passenter.routes';
 import { whenTrue } from '@angular-architects/ngrx-hateoas';
 import { inject } from '@angular/core';
-import { AppState } from './app.state';
+import { AppStore } from './app.store';
 
 export const routes: Routes = [{
     path: '',
@@ -15,7 +15,7 @@ export const routes: Routes = [{
     children: CORE_ROUTES
 }, {
     path: "flight",
-    canActivate: [ () => whenTrue(inject(AppState).rootApiState.isLoaded) ],
+    canActivate: [ () => whenTrue(inject(AppStore).rootApiState.isLoaded) ],
     children: FLIHGT_ROUTES
 }, {
     path: "passenger",

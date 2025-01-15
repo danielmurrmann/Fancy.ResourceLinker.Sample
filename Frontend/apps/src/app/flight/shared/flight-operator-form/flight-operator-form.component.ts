@@ -10,5 +10,4 @@ import { FormUpdateDirective } from '../../../shared/directives/form-update.dire
 })
 export class FlightOperatorFormComponent {
   model = model(initialFlightOperator);
-  aircrafts = input<Aircraft[]>([]);
 }

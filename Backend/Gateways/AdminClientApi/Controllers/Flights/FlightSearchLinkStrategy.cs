@@ -7,7 +7,7 @@ public class FlightSearchLinkStrategy : LinkStrategyBase<FlightSearchViewModel>
 {
     protected override void LinkResourceInternal(FlightSearchViewModel resource, IUrlHelper urlHelper)
     {
-        resource.AddLink("self", urlHelper.LinkTo<FlightsController>(c => c.GetSearchViewModel(resource.From, resource.To)));
+        resource.AddLink("self", urlHelper.LinkTo(urlHelper.ActionContext.HttpContext.Request.Path + urlHelper.ActionContext.HttpContext.Request.QueryString));
         resource.AddLink("flightSearchVm", urlHelper.LinkTo<FlightsController>(c => c.GetSearchViewModel(null, null)));
         resource.AddLink("createFlightVm", urlHelper.LinkTo<FlightsController>(c => c.GetCreateViewModel()));
 
