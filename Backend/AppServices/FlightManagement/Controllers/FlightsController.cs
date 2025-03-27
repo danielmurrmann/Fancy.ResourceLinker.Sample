@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlightManagement.Controllers;
 
-//[Authorize]
+[Authorize]
 [ApiController]
 public class FlightsController : HypermediaController
 {
@@ -70,30 +70,33 @@ public class FlightsController : HypermediaController
         return Hypermedia(result);
     }
 
+    [Authorize(Roles = "flightmanagement-admin")]
     [HttpPut]
     [Route("api/flight-management/flights/{id}/connection")]
     public async Task<IActionResult> UpdateFlightConnection(int id, [FromBody] FlightConnection connection)
     {
         Flight? flightToEdit = await _flightManagementDbContext.Flights.SingleOrDefaultAsync(f => f.Id == id);
-        if (flightToEdit == null) return BadRequest();
+        if (flightToEdit == null) return NotFound();
         flightToEdit.Connection = connection;
 
         await _flightManagementDbContext.SaveChangesAsync();
         return NoContent();
     }
 
+    [Authorize(Roles = "flightmanagement-admin")]
     [HttpPut]
     [Route("api/flight-management/flights/{id}/times")]
     public async Task<IActionResult> UpdateFlightTimes(int id, [FromBody] FlightTimes times)
     {
         Flight? flightToEdit = await _flightManagementDbContext.Flights.SingleOrDefaultAsync(f => f.Id == id);
-        if (flightToEdit == null) return BadRequest();
+        if (flightToEdit == null) return NotFound();
         flightToEdit.Times = times;
 
         await _flightManagementDbContext.SaveChangesAsync();
         return NoContent();
     }
 
+    [Authorize(Roles = "flightmanagement-admin")]
     [HttpPut]
     [Route("api/flight-management/flights/{id}/operator")]
     public async Task<IActionResult> UpdateFlightOperator(int id, [FromBody] FlightOperator @operator)
@@ -101,7 +104,7 @@ public class FlightsController : HypermediaController
         _logger.LogInformation($"Updating operator of flight with id {id}");
 
         Flight? flightToEdit = await _flightManagementDbContext.Flights.SingleOrDefaultAsync(f => f.Id == id);
-        if (flightToEdit == null) return BadRequest();
+        if (flightToEdit == null) return NotFound();
         flightToEdit.Operator = @operator;
         await _flightManagementDbContext.SaveChangesAsync();
         return NoContent();
@@ -124,7 +127,7 @@ public class FlightsController : HypermediaController
     public async Task<IActionResult> DeleteFlightById(int id)
     {
         Flight? flightToRemove = await _flightManagementDbContext.Flights.SingleOrDefaultAsync(f => f.Id == id);
-        if (flightToRemove == null) return BadRequest();
+        if (flightToRemove == null) return NotFound();
         _flightManagementDbContext.Flights.Remove(flightToRemove);
         await _flightManagementDbContext.SaveChangesAsync();
         return NoContent();

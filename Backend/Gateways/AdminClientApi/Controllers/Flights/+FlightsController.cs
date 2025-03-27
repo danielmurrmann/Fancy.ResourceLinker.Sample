@@ -56,6 +56,7 @@ public class FlightsController : HypermediaController
     /// </summary>
     [HttpGet]
     [Route("/api/flight-management/flights/template")]
+    //public Task GetCreateViewModel() => _router.ForwardAsync(HttpContext, "FlightManagement", "/api/flight-management/flights/template");
     public Task<IActionResult> GetCreateViewModel() => _router.ProxyAsync(HttpContext, "FlightManagement");
 
     /// <summary>
