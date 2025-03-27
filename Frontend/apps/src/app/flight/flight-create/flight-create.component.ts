@@ -24,7 +24,8 @@ export class FlightCreateComponent {
   flightOperator = this.viewModel.operator;
 
   async onSaveFlight() {
-    await this.store.createFlight();
+    const response = await this.store.createFlight();
+    console.log('Flight created at: ', response.headers.get('Location'));
     this.location.back();
   }
 }

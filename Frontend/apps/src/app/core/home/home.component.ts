@@ -8,5 +8,10 @@ import { HomeStore } from './home.store';
     templateUrl: './home.component.html'
 })
 export class HomeComponent {
+  store = inject(HomeStore);
   viewModel = inject(HomeStore).homeVm;
+
+  constructor() {
+    this.store.reloadHomeVm();
+  }
 }
