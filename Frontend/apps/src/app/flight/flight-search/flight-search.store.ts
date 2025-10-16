@@ -1,5 +1,5 @@
 import { withHypermediaResource, withHypermediaCollectionAction } from "@angular-architects/ngrx-hateoas";
-import { signalStore, withHooks } from "@ngrx/signals";
+import { signalStore } from "@ngrx/signals";
 import { Flight } from "../flight.entities";
 
 export type FlightSearchVm = {
@@ -17,10 +17,5 @@ const initialFlightSearchVm: FlightSearchVm = {
 export const FlightSearchStore = signalStore(
   { providedIn: 'root' },
   withHypermediaResource('flightSearchVm', initialFlightSearchVm),
-  withHypermediaCollectionAction('deleteFlight'),
-  withHooks({
-    onInit(store) {
-      store._connectDeleteFlight(store.flightSearchVm.flights, 'id', 'delete');
-    }
-  })
+  withHypermediaCollectionAction('deleteFlight', store => store.flightSearchVm.flights, 'delete')
 );
