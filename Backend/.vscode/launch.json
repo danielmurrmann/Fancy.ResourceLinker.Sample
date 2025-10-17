@@ -1,0 +1,55 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "FlightManagement",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-FlightManagement",
+            "program": "${workspaceFolder}/AppServices/FlightManagement/bin/Debug/net8.0/FlightManagement.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/AppServices/FlightManagement",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+        },
+        {
+            "name": "FlightShopping",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-FlightShopping",
+            "program": "${workspaceFolder}/AppServices/FlightShopping/bin/Debug/net8.0/FlightShopping.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/AppServices/FlightShopping",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+        },
+         {
+            "name": "AdminClientApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-AdminClientApi",
+            "program": "${workspaceFolder}/Gateways/AdminClientApi/bin/Debug/net8.0/AdminClientApi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Gateways/AdminClientApi",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Start All",
+            "configurations": [
+                "FlightManagement",
+                "FlightShopping",
+                "AdminClientApi"
+            ],
+            "stopAll": true
+        }
+    ]
+}
